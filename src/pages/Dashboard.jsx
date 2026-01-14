@@ -17,7 +17,6 @@ const Dashboard = ({ user }) => {
   const [todayMinutes, setTodayMinutes] = useState(0);
   const [completion, setCompletion] = useState(0);
 
-  // 📘 Subjects count
   useEffect(() => {
     if (!user) return;
     return onSnapshot(
@@ -26,7 +25,6 @@ const Dashboard = ({ user }) => {
     );
   }, [user]);
 
-  // ⏱ Today focus
   useEffect(() => {
     if (!user) return;
 
@@ -47,7 +45,6 @@ const Dashboard = ({ user }) => {
     );
   }, [user]);
 
-  // ✅ Task completion %
   useEffect(() => {
     if (!user) return;
 
@@ -80,7 +77,6 @@ const Dashboard = ({ user }) => {
 
       <main className="max-w-7xl mx-auto p-6 space-y-6">
 <MotivationalQuote />
-        {/* 📊 STATS */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <StatCard icon={<FiBook />} label="Subjects" value={subjectCount} />
           <StatCard
@@ -95,10 +91,8 @@ const Dashboard = ({ user }) => {
           />
         </div>
 
-        {/* 🧠 MAIN GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* LEFT COLUMN */}
           <div className="lg:col-span-2 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="max-h-[420px] overflow-y-auto rounded-xl">
@@ -106,7 +100,6 @@ const Dashboard = ({ user }) => {
 </div>
 
 
-              {/* SCROLLABLE TASKS */}
               <div className="max-h-[420px] overflow-y-auto rounded-xl">
                 <Tasks
                   subject={selectedSubject}

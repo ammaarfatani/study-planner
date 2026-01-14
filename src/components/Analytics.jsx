@@ -20,7 +20,6 @@ ChartJS.register(
   Legend
 );
 
-// 📅 helpers
 const formatDate = (d) =>
   d.toLocaleDateString("en-GB", { day: "2-digit", month: "short" });
 
@@ -83,7 +82,6 @@ const Analytics = ({ user }) => {
         <p className="text-sm text-slate-500">No focus data yet</p>
       ) : (
         <>
-          {/* DAILY */}
           <div>
             <h3 className="text-sm font-medium mb-2">
               Daily Focus (minutes)
@@ -93,7 +91,6 @@ const Analytics = ({ user }) => {
             </div>
           </div>
 
-          {/* WEEKLY */}
           <div>
             <h3 className="text-sm font-medium mb-2">
               Weekly Focus (minutes)

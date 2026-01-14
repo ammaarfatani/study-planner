@@ -46,7 +46,6 @@ const Subjects = ({ onSelect }) => {
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl shadow flex flex-col h-full">
 
-      {/* HEADER */}
       <div className="p-5 border-b dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800 z-10">
         <h2 className="font-semibold flex items-center gap-2">
           <FiBookOpen className="text-indigo-600" />
@@ -62,14 +61,13 @@ const Subjects = ({ onSelect }) => {
           />
           <button
             onClick={addSubject}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 rounded-lg"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 rounded-lg cursor-pointer"
           >
             <FiPlus />
           </button>
         </div>
       </div>
 
-      {/* LIST */}
       <ul className="p-4 space-y-2 overflow-y-auto">
         {subjects.length === 0 && (
           <p className="text-sm text-slate-500 text-center">

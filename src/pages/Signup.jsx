@@ -44,14 +44,14 @@ const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button className="w-full bg-indigo-600 text-white py-3 rounded-lg">
+          <button className="w-full bg-indigo-600 text-white py-3 rounded-lg cursor-pointer">
             Sign Up
           </button>
         </form>
 
         <button
           onClick={handleGoogle}
-          className="w-full mt-4 border py-3 rounded-lg"
+          className="w-full mt-4 border py-3 rounded-lg cursor-pointer"
         >
           Sign up with Google
         </button>

@@ -30,7 +30,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Routes */}
         <Route
           path="/login"
           element={!user ? <Login /> : <Navigate to="/dashboard" />}
@@ -40,14 +39,12 @@ function App() {
           element={!user ? <Signup /> : <Navigate to="/dashboard" />}
         />
 
-        {/* Protected Route (Dashboard baad mein banega) */}
        <Route
   path="/dashboard"
   element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
 />
 
 
-        {/* Default */}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>

@@ -22,14 +22,7 @@ const Tasks = ({ subject, onSelectTask }) => {
     if (!subject || !user) return;
 
     return onSnapshot(
-      collection(
-        db,
-        "users",
-        user.uid,
-        "subjects",
-        subject.id,
-        "tasks"
-      ),
+      collection(db, "users", user.uid, "subjects", subject.id, "tasks"),
       (snap) =>
         setTasks(
           snap.docs.map((d) => ({
@@ -46,14 +39,7 @@ const Tasks = ({ subject, onSelectTask }) => {
       return alert("All fields required");
 
     await addDoc(
-      collection(
-        db,
-        "users",
-        user.uid,
-        "subjects",
-        subject.id,
-        "tasks"
-      ),
+      collection(db, "users", user.uid, "subjects", subject.id, "tasks"),
       {
         title: taskTitle,
         deadline,
@@ -86,57 +72,55 @@ const Tasks = ({ subject, onSelectTask }) => {
 
   if (!subject)
     return (
-      <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow text-center text-slate-500">
-        Select a subject to view tasks
+      <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow text-center">
+        Select a subject
       </div>
     );
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl shadow h-full flex flex-col">
-
-      {/* HEADER */}
-      <div className="p-5 border-b dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800 z-10">
+      <div className="p-5 border-b">
         <h2 className="font-semibold">
           Tasks – <span className="text-indigo-600">{subject.name}</span>
         </h2>
 
-        {/* ADD TASK */}
-        <div className="grid grid-cols-1 gap-2 mt-3">
+        <div className="grid gap-2 mt-3">
           <input
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
             placeholder="Task title"
-            className="p-2 rounded-lg border text-sm dark:bg-slate-700"
+            className="p-2 rounded border"
           />
           <input
             type="number"
             value={estimated}
             onChange={(e) => setEstimated(e.target.value)}
             placeholder="Estimated minutes"
-            className="p-2 rounded-lg border text-sm dark:bg-slate-700"
+            className="p-2 rounded border"
           />
           <input
             type="date"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
-            className="p-2 rounded-lg border text-sm dark:bg-slate-700"
+            className="p-2 rounded border"
           />
           <button
             onClick={addTask}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg"
+            className="bg-indigo-600 text-white py-2 rounded cursor-pointer"
           >
             Add Task
           </button>
         </div>
       </div>
 
-      {/* TASK LIST */}
       <ul className="p-4 space-y-3 overflow-y-auto">
         {tasks.map((task) => {
           const progress = Math.min(
             100,
             Math.round(
-              (task.spentMinutes / task.estimatedMinutes) * 100
+              (task.spentMinutes /
+                (task.spentMinutes + task.estimatedMinutes || 1)) *
+                100
             )
           );
 
@@ -144,46 +128,40 @@ const Tasks = ({ subject, onSelectTask }) => {
             <li
               key={task.id}
               onClick={() => onSelectTask(task)}
-              className={`p-4 rounded-xl border cursor-pointer transition
-                ${
-                  task.completed
-                    ? "bg-green-50 dark:bg-green-900/30 border-green-400"
-                    : "hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-slate-700"
-                }`}
+              className={`p-4 rounded border cursor-pointer ${
+                task.completed ? "bg-green-100" : "hover:bg-indigo-50"
+              }`}
             >
-              <div className="flex justify-between items-start">
+              <div className="flex justify-between">
                 <div>
                   <p className="font-medium">{task.title}</p>
-                  <p className="text-xs text-slate-500">
-                    {task.spentMinutes}/{task.estimatedMinutes} min
+                  <p className="text-xs">
+                    {task.spentMinutes} /{" "}
+                    {task.spentMinutes + task.estimatedMinutes} min
                   </p>
                 </div>
 
                 {task.completed && (
-                  <FiCheckCircle className="text-green-600 text-lg" />
+                  <FiCheckCircle className="text-green-600 text-xl" />
                 )}
               </div>
 
-              {/* Progress */}
-              <div className="h-1 bg-slate-200 rounded mt-2">
+              <div className="h-1 bg-gray-200 mt-2">
                 <div
-                  className="h-1 bg-indigo-600 rounded"
+                  className="h-1 bg-indigo-600"
                   style={{ width: `${progress}%` }}
                 />
               </div>
 
-              <div className="flex justify-between mt-2 text-xs text-slate-500">
-                <span>📅 {task.deadline}</span>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleComplete(task);
-                  }}
-                  className="underline"
-                >
-                  {task.completed ? "Undo" : "Mark done"}
-                </button>
-              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleComplete(task);
+                }}
+                className="text-xs underline mt-1 cursor-pointer"
+              >
+                {task.completed ? "Undo" : "Mark done"}
+              </button>
             </li>
           );
         })}
