@@ -1,16 +1,45 @@
-# React + Vite
+📚 Study Planner – React & Firebase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Study Planner web application built with React and Firebase, designed to help students manage subjects, tasks, focus sessions, and track productivity in one place.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔐 Authentication (Login / Signup) using Firebase Auth
 
-## React Compiler
+📚 Subject Management – add & organize subjects
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+📝 Task Management – create tasks with deadlines & completion tracking
 
-## Expanding the ESLint configuration
+⏱ Focus Timer – track daily study sessions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+📊 Live Analytics Dashboard
+
+Total subjects
+
+Focus time for today
+
+Task completion percentage
+
+🔄 Real-time data sync using Firestore
+
+💾 Data persists even after refresh
+
+🛠 Tech Stack
+
+Frontend: React, Vite, Tailwind CSS
+
+Backend: Firebase Firestore
+
+Authentication: Firebase Auth
+
+State Management: React Context API
+
+Icons: React Icons
+
+🎯 Purpose
+
+This project was built to practice real-world React architecture, Firebase integration, authentication flow, and real-time updates while creating a useful productivity tool.
+
+▶️ Live Demo
+
+https://study-planner-2dc84.web.app
